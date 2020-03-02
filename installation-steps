@@ -1,0 +1,12 @@
+journalctl -xeu kubelet | tail -n 10
+journalctl -xeu docker | tail -n 10
+kubectl get pods --namespace=kube-system
+kubectl logs etcd-master-k8 --namespace=kube-system
+kubectl get ingress -n elk
+kubectl describe ingress elasticsearch-master -n elk
+kubectl apply -f fluentd-daemonset-elasticsearch-rbac.yaml
+kubectl get pods --namespace=elk | grep fluentd
+journalctl -xeu kubelet | tail -n 10
+journalctl -xeu docker | tail -n 1
+kubectl get pods -n elk | grep kibana
+kubectl logs kibana-kibana-557b79fdd5-p77v6 -n elk | tail -n 2
